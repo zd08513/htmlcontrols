@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css/city.css" rel="stylesheet">
+    <style type="text/css">
+        body, html, legend {
+            color: #333;
+        }
+        .autofill_wrap_large {
+            font: 14px/26px SimSun;
+        }
+        .autofill_wrap {
+            position: absolute;
+            z-index: 999;
+            box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+            background-color: #FFF;
+            border: 1px solid #9B9B9B;
+            font: 12px/24px SimSun;
+        }
+        .autofill_wrap_large {
+            font: 14px/26px SimSun;
+        }
+        .autofill_hd_inner {
+            color: #999;
+            font-size: 12px;
+            display: block;
+            padding: 0px 10px;
+        }
+        .autofill_close {
+             position: absolute;
+             width: 11px;
+             height: 11px;
+             top: 7px;
+             right: 10px;
+             background: url('images/pic.png') repeat scroll 0px -16px transparent;
+             cursor: pointer;
+         }
+        table {
+            border-spacing: 0px;
+        }
+        .autofill_tray td {
+            color: #006DAE;
+            padding: 0px 10px;
+        }
+        .autofill_tray {
+            border-bottom: 1px solid #9B9B9B;
+            border-top: 1px solid #9B9B9B;
+            background: none repeat scroll 0% 0% #FFF;
+        }
+        .autofill_tray .match_div {
+            padding: 2px 6px;
+        }
+        .match_right {
+            float: right;
+        }
+        .autofill_page {
+            text-align: center;
+        }
+        a {
+            color: #005BB5;
+            text-decoration: none;
+            outline: 0px none;
+        }
+        .autofill_page a {
+            font-family: '宋体';
+            display: inline-block;
+            font-size: 14px;
+            padding: 0px 3px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>国内航班</p>
+    <p>
+        出发城市：
+        <input type="text" value="城市名" id="chengsi1" title="城市名" />
+    </p>
+    <p>
+        到达城市：
+        <input type="text" value="城市名" id="chengsi2" title="城市名" />
+    </p>
+</div>
+<div>
+    <p>国际航班</p>
+    <p>
+        出发城市：
+        <input type="text" value="城市名" id="chengsi3" title="城市名" />
+    </p>
+    <p>
+        到达城市：
+        <input type="text" value="城市名" id="chengsi4" title="城市名" />
+    </p>
+</div>
+<script src="js/jquery-1.7.1.min.js" type="application/javascript"></script>
+<script src="js/common.js" type="application/javascript"></script>
+<script src="js/citytools.js" type="application/javascript"></script>
+<script>
+    //国内
+    //出发地
+    CityWindowShow('chengsi1',{type:1,status:1});
+    //到达地
+    CityWindowShow('chengsi2',{type:1,status:1,automaticsearch:false});
+    //国际
+    //出发地
+    CityWindowShow('chengsi3',{type:2,status:1,automaticsearch:false});
+    //到达地
+    CityWindowShow('chengsi4',{type:2,status:2,automaticsearch:true});
+
+    function AutomaticSearch(id){
+        //生成窗口的id
+        var SearchwindowID='autoComplete'+createHexRandom();
+        var html="<div style='left: 63px; top: 18px;display: none;width:222px;' id='"+SearchwindowID+"' class='autofill_wrap autofill_wrap_large'>";
+        //键盘事件
+        $('#'+id).keyup(function(){
+            var windows=$('#'+SearchwindowID).attr('id');
+            var bool=false;
+            if(windows!=undefined){
+                html="";
+                $(windows).html("");
+                bool=true;
+            }
+            var value=$(this).val(),data=[],
+                searchData=[],
+                searchMessage='';
+            if(value.length>0){
+                var reg = /^([\u4e00-\u9fa5||·])$/;//判断中文
+                if(reg.test(value)){
+                    searchData=DataToFiter(searchlist.ch,2,value,0);
+                }
+                var reg2 = /^[a-zA-Z]+$/;//表示英文
+                if(reg2.test(value)){
+                    value=value.toLowerCase();
+                    searchData=DataToFiter(searchlist.ch,1,value,0);
+                }
+                if(searchData.length==0 || searchData==null || searchData==''){
+                    searchMessage='对不起，找不到：'+value;
+                }else{
+                    searchMessage='输入中文/拼音/英文/或↑↓键选择';
+                }
+                //加载列表
+                html+="<iframe style='z-index: -1; opacity: 0; border: medium none; position: absolute; height: 310px; width: 222px;'></iframe>";
+                html+="<div class='show_title'><span class='autofill_hd_inner'>"+searchMessage+"</span><span class='autofill_close show_title'></span></div>";
+                html+="<table style='width: 222px;' class='autofill_tray' cellpadding='0' cellspacing='0'><tbody>";
+                for(var i= 0,len=searchData.length;i<len;i++){
+                    html+="<tr class='autofill_item enableListRow'><td><div class='match_div'>";
+                    var values=searchData[i][0].split(','),valueString="";
+                    for(var j= 0;j<values.length;j++){
+                        valueString+=values[j];
+                    }
+                    html+="<span class='match_right'>"+valueString+"</span>";
+                    html+="<span class='match_left'>"+searchData[i][1]+"</span>";
+                    html+="</div></tr>";
+                }
+                html+="<tbody></table></div>";
+                if(bool){
+                    GetShowOrHide('#'+SearchwindowID,'show');
+                    $('#'+SearchwindowID).html(html);
+                }else{
+                    html+="</div>";
+                    $('body').prepend(html);
+                    var wLeft=$(this).offset().left,
+                            wTop=$(this).offset().top+$(this).height()+2;
+                    GetShowOrHide('#'+SearchwindowID,'show');
+                    $('#'+SearchwindowID).css({left:wLeft+"px"});
+                    $('#'+SearchwindowID).css({top:wTop+"px"});
+                }
+            }else{
+                GetShowOrHide('#'+SearchwindowID,'hide');
+            }
+            if(searchData.length>0){
+                //鼠标经过换色
+                $('#'+SearchwindowID+' .autofill_tray tbody tr').hover(function(){
+                    $(this).css({background:'#8AB923'});
+                    $(this).children().css({color:'#fff'});
+                },function(){
+                    $(this).css({background:'#fff'});
+                    $(this).children().css({color:'#006DAE'});
+                });
+                $('#'+SearchwindowID+' .autofill_tray .autofill_item').click(function(){
+                    var childerValue=$(this).find('span:nth-child(2)').text();
+                    $('#'+id).val(childerValue);
+                    GetShowOrHide('#'+SearchwindowID,'hide');
+                });
+            }
+            //关闭搜索窗口
+            $('#'+SearchwindowID+'  div.show_title span.autofill_close').click(function(){
+                GetShowOrHide('#'+SearchwindowID,'hide');
+            });
+        });
+
+    }
+    //过滤数据
+    /*
+    *data：数据集
+    * languageType：语言类型 1:表示英文  2：表示中文
+    * searchString：搜索字符串
+    * searchLength：搜索当前字符串第个位置
+    */
+    function DataToFiter(data,languageType,searchString,searchLength){
+        if(searchLength==0 && languageType==1){
+            data=DataToFirst(data,searchString);
+        }
+        if(searchString.length<=searchLength)return data;
+        var selectData=[];
+        if(languageType==1){
+            for(var i= 0,len=data.length;i<len;i++){
+                var values=data[i],value='';
+                if(languageType==1){
+                    value=values[0];
+                }
+                else if(languageType==2)
+                    value=values[1];
+                if(value.length>=searchString.length){
+                    if(searchLength==0){
+                        if(value.charAt(searchLength)==searchString.charAt(searchLength)){
+                            selectData.push(values);
+                        }
+                    }else{
+                        var itemvalue=value.split(','),itemString="",selectItembool=false;
+                        //判断输入的字符串是否等于简写的字符长度
+                        if(searchString.length<=itemvalue.length){
+                            for(var x= 0,vlen=itemvalue.length;x<vlen;x++){
+                                if(itemvalue[x].charAt(0)==searchString.charAt(x)){
+                                    selectItembool=true;
+                                }else{
+                                    if(searchString.charAt(x)==""){
+                                        selectItembool=true;
+                                    }else{
+                                        selectItembool=false;
+                                    }
+                                }
+                                itemString+=itemvalue[x];
+                            }
+                            if(selectItembool)selectData.push(values);
+                        }else{
+                            for(var x= 0,vlen=itemvalue.length;x<vlen;x++){
+                                itemString+=itemvalue[x];
+                            }
+                        }
+                        if(!selectItembool)
+                            if(itemString.charAt(searchLength)==searchString.charAt(searchLength)){
+                                selectData.push(values);
+                            }
+                    }
+                }
+            }
+        }else if(languageType==2){
+            $.each(data,function(i,n){
+                $.each(n,function(j,k){
+                    var itemvalues=k[1];
+                    if(itemvalues.charAt(searchLength)==searchString.charAt(searchLength)){
+                        selectData.push(k);
+                    }
+                })
+            });
+        }
+        searchLength=searchLength+1;
+        return DataToFiter(selectData,languageType,searchString,searchLength);
+    }
+    //返回首字母的集合
+    function DataToFirst(data,searchString){
+        var charString=searchString.charAt(0);
+        var selectData=[];
+        $.each(data,function(i,n){
+           if(i==charString){
+               selectData=n;
+           }
+        });
+        return selectData;
+    }
+    //搜索功能
+    AutomaticSearch('chengsi1');
+    AutomaticSearch('chengsi2');
+</script>
+</body>
+</html>
