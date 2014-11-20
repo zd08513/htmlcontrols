@@ -1,3 +1,6 @@
+/**
+ * Created by zd on 14-11-19.
+ */
 //显示或隐藏
 function GetShowOrHide(id,type){
     if(type=='show')

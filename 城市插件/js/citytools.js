@@ -1,3 +1,6 @@
+/**
+ * Created by zd on 14-11-19.
+ */
 var menu_Data={
     "data":['国内热门','国际热门','欧洲','美洲','非洲','大洋洲','亚洲'],
     "datas":['热门','ABCDEF','GHJKL','MNPQRS','TWXYZ']
