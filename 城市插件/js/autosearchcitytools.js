@@ -1,7 +1,7 @@
 /**
  * Created by zd on 14-11-20.
  */
-function AutomaticSearch(id){
+function AutomaticSearch(id,config){
     //生成窗口的id
     var SearchwindowID='autoComplete'+createHexRandom();
     var html="<div style='left: 63px; top: 18px;display: none;width:222px;' id='"+SearchwindowID+"' class='autofill_wrap autofill_wrap_large'>";
@@ -20,12 +20,20 @@ function AutomaticSearch(id){
         if(value.length>0){
             var reg = /^([\u4e00-\u9fa5||·])$/;//判断中文
             if(reg.test(value)){
-                searchData=DataToFiter(searchlist.ch,2,value,0);
+                if(config.languageType==1){//判断是国内还是国外  1:表示国内，2，表示国外
+                    searchData=DataToFiter(searchlist.ch,2,value,0,1);
+                }else{
+                    searchData=DataToFiter(searchlist.en,2,value,0,2);
+                }
             }
             var reg2 = /^[a-zA-Z]+$/;//表示英文
             if(reg2.test(value)){
                 value=value.toLowerCase();
-                searchData=DataToFiter(searchlist.ch,1,value,0);
+                if(config.languageType==1){//判断是国内还是国外
+                    searchData=DataToFiter(searchlist.ch,1,value,0,1);
+                }else{
+
+                }
             }
             if(searchData.length==0 || searchData==null || searchData==''){
                 searchMessage='对不起，找不到：'+value;
@@ -90,9 +98,10 @@ function AutomaticSearch(id){
  * languageType：语言类型 1:表示英文  2：表示中文
  * searchString：搜索字符串
  * searchLength：搜索当前字符串第个位置
+ * languanescope:1表示国内，2表示国外
  */
-function DataToFiter(data,languageType,searchString,searchLength){
-    if(searchLength==0 && languageType==1){
+function DataToFiter(data,languageType,searchString,searchLength,languanescope){
+    if(searchLength==0 && languageType==1 && languanescope==1){
         data=DataToFirst(data,searchString);
     }
     if(searchString.length<=searchLength)return data;
@@ -139,7 +148,7 @@ function DataToFiter(data,languageType,searchString,searchLength){
                 }
             }
         }
-    }else if(languageType==2){
+    }else if(languageType==2 && languanescope==1){
         $.each(data,function(i,n){
             $.each(n,function(j,k){
                 var itemvalues=k[1];
@@ -147,6 +156,17 @@ function DataToFiter(data,languageType,searchString,searchLength){
                     selectData.push(k);
                 }
             })
+        });
+    }else if(languageType==2 && languanescope==2){
+        $.each(data,function(i,n){
+            var selectItemData=n;
+            if(selectItemData[1].charAt(searchLength)==searchString.charAt(searchLength)){
+                var values=[];
+                values.push(selectItemData[0][1],selectItemData[1]);
+                selectData.push(values);
+                console.log(selectData);
+            }
+            console.log(selectItemData[1].charAt(searchLength));
         });
     }
     searchLength=searchLength+1;
