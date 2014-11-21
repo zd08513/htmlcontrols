@@ -4,6 +4,7 @@
     <list default="true" id="264b0148-79bd-4f8c-b5a2-2e5994b30ba7" name="Default" comment="" />
     <ignored path="html.iws" />
     <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,60 +24,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="65" selection-start="341" selection-end="359" vertical-scroll-proportion="-0.0" vertical-offset="114" max-vertical-offset="2755">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="遮罩层.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/遮罩层.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="72" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0" vertical-offset="551" max-vertical-offset="760">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="city.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/城市插件/css/city.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="156" column="14" selection-start="3413" selection-end="3413" vertical-scroll-proportion="0.0" vertical-offset="2924" max-vertical-offset="4275">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/城市插件/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="29" selection-start="3126" selection-end="3134" vertical-scroll-proportion="-15.571428" vertical-offset="1711" max-vertical-offset="2375">
+            <state vertical-scroll-proportion="-8.964286" vertical-offset="1687" max-vertical-offset="2375">
+              <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="autosearchcitytools.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="autosearchcitytools.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/城市插件/js/autosearchcitytools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="64" selection-start="7074" selection-end="7074" vertical-scroll-proportion="0.7904762" vertical-offset="2145" max-vertical-offset="2831">
+            <state vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="4997">
+              <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
               <folding>
-                <element signature="e#4441#6276#0" expanded="false" />
-                <marker date="1416476556251" expanded="false" signature="172:220" placeholder="..." />
-                <marker date="1416476556251" expanded="false" signature="1575:1669" placeholder="..." />
-                <marker date="1416476556251" expanded="false" signature="1871:1884" placeholder="..." />
+                <marker date="1416553545338" expanded="true" signature="1863:1957" placeholder="..." />
+                <marker date="1416553545338" expanded="true" signature="2159:2172" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="citytools.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="citytools.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/城市插件/js/citytools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="9" selection-start="6476" selection-end="6476" vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3306">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3306">
+              <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
               <folding>
                 <marker date="1416474643561" expanded="false" signature="410:468" placeholder="..." />
                 <marker date="1416474643561" expanded="false" signature="6526:6620" placeholder="..." />
@@ -85,10 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/城市插件/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="32" selection-start="5906" selection-end="5906" vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="1900">
+            <state vertical-scroll-proportion="0.5405405" vertical-offset="0" max-vertical-offset="1748">
+              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -102,29 +78,22 @@
     </FindUsagesManager>
   </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/图片轮播插件/css/bootstrap-combined.min.css" />
-        <option value="$PROJECT_DIR$/图片轮播插件/css/juicyslider.css" />
-        <option value="$PROJECT_DIR$/图片轮播插件/js/jquery.min.js" />
-        <option value="$PROJECT_DIR$/图片轮播插件/js/jquery-ui.min.js" />
-        <option value="$PROJECT_DIR$/图片轮播插件/js/juicyslider.js" />
-        <option value="$PROJECT_DIR$/图片轮播插件/test.html" />
-        <option value="$PROJECT_DIR$/遮罩层.html" />
-        <option value="$PROJECT_DIR$/城市插件/css/city.css" />
-        <option value="$PROJECT_DIR$/城市插件/js/city.js" />
-        <option value="$PROJECT_DIR$/城市插件/js/citytools.js" />
-        <option value="$PROJECT_DIR$/城市插件/js/common.js" />
         <option value="$PROJECT_DIR$/城市插件/index.html" />
         <option value="$PROJECT_DIR$/城市插件/js/autosearchcitytools.js" />
+        <option value="$PROJECT_DIR$/城市插件/js/common.js" />
       </list>
     </option>
   </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2" />
-    <option name="y" value="161" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1616" />
-    <option name="height" value="524" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -140,7 +109,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -152,6 +121,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -236,7 +206,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -244,6 +213,9 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/城市插件/index.html" />
+    <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -253,98 +225,92 @@
       <recent name="E:\Projects\html\图片轮播插件\data" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.test.html">
-    <configuration default="false" name="test.html" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" temporary="true" uri="http://localhost:63342/html/图片轮播插件/test.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" engineId="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" uri="http://localhost:63342/html/城市插件/index.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="name" value="Dart" />
-      <option name="saveOutputToFile" value="false" />
-      <option name="showConsoleOnStdErr" value="false" />
-      <option name="showConsoleOnStdOut" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
-      <browser start="false" url="" with-js-debugger="false" />
-      <method />
-    </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.test.html" />
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
     </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.test.html" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
-    <option name="USER" value="" />
-    <option name="PASSWORD" value="" />
-    <option name="mySSHConnectionTimeout" value="30000" />
-    <option name="mySSHReadTimeout" value="30000" />
-    <option name="LAST_MERGED_REVISION" />
-    <option name="MERGE_DRY_RUN" value="false" />
-    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
-    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
-    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
-    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
-    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
-    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <option name="FORCE_UPDATE" value="false" />
-    <option name="IGNORE_EXTERNALS" value="false" />
-    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="264b0148-79bd-4f8c-b5a2-2e5994b30ba7" name="Default" comment="" />
       <created>1415929085939</created>
+      <option name="number" value="Default" />
       <updated>1415929085939</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2" y="161" width="1616" height="524" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19657578" sideWeight="0.6002845" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997155" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1964512" sideWeight="0.6002845" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2536913" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -356,87 +322,58 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="27" selection-start="388" selection-end="388" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2755">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="2755">
+          <caret line="6" column="65" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/遮罩层.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="24" selection-start="0" selection-end="1362" vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="741">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="48" selection-start="2939" selection-end="2939" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2755">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/css/bootstrap-combined.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="874" column="0" selection-start="126539" selection-end="126539" vertical-scroll-proportion="0.9622926" vertical-offset="15968" max-vertical-offset="16720" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/css/juicyslider.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="1" selection-start="1661" selection-end="1661" vertical-scroll-proportion="0.943787" vertical-offset="1186" max-vertical-offset="1938" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/js/jquery.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="28793" selection-start="94023" selection-end="94023" vertical-scroll-proportion="0.08597285" vertical-offset="0" max-vertical-offset="663" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/js/jquery-ui.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="234742" selection-start="235719" selection-end="235719" vertical-scroll-proportion="0.11463047" vertical-offset="0" max-vertical-offset="663" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/js/juicyslider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="0" selection-start="3895" selection-end="3895" vertical-scroll-proportion="0.943787" vertical-offset="1357" max-vertical-offset="2128" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/城市插件/js/jquery-1.7.1.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="65" selection-start="341" selection-end="359" vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="2755">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/遮罩层.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="72" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.0" vertical-offset="551" max-vertical-offset="760">
+        <state vertical-scroll-proportion="0.0" vertical-offset="551" max-vertical-offset="760">
+          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/城市插件/css/city.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="14" selection-start="3413" selection-end="3413" vertical-scroll-proportion="0.0" vertical-offset="2924" max-vertical-offset="4275">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2924" max-vertical-offset="4275">
+          <caret line="156" column="14" selection-start-line="156" selection-start-column="14" selection-end-line="156" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/城市插件/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1711" max-vertical-offset="2375">
+          <caret line="113" column="29" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/城市插件/js/autosearchcitytools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2831">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1416553545338" expanded="true" signature="1863:1957" placeholder="..." />
+            <marker date="1416553545338" expanded="true" signature="2159:2172" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/城市插件/js/citytools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="9" selection-start="6476" selection-end="6476" vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3306">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3306">
+          <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
           <folding>
             <marker date="1416474643561" expanded="false" signature="410:468" placeholder="..." />
             <marker date="1416474643561" expanded="false" signature="6526:6620" placeholder="..." />
@@ -446,30 +383,139 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/城市插件/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="32" selection-start="5906" selection-end="5906" vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="1900">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1221" max-vertical-offset="1900">
+          <caret line="77" column="32" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2755">
+          <caret line="8" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/遮罩层.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="456" max-vertical-offset="741">
+          <caret line="24" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2755">
+          <caret line="85" column="48" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/css/bootstrap-combined.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9622926" vertical-offset="15968" max-vertical-offset="16720">
+          <caret line="874" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/css/juicyslider.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.943787" vertical-offset="1186" max-vertical-offset="1938">
+          <caret line="96" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/js/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08597285" vertical-offset="0" max-vertical-offset="663">
+          <caret line="3" column="28793" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/js/jquery-ui.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11463047" vertical-offset="0" max-vertical-offset="663">
+          <caret line="4" column="234742" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/js/juicyslider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.943787" vertical-offset="1357" max-vertical-offset="2128">
+          <caret line="105" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/城市插件/js/jquery-1.7.1.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/城市插件/js/citytools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1655" max-vertical-offset="3306">
+          <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
+          <folding>
+            <marker date="1416474643561" expanded="false" signature="410:468" placeholder="..." />
+            <marker date="1416474643561" expanded="false" signature="6526:6620" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/遮罩层.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49880096" vertical-offset="343" max-vertical-offset="760">
+          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/图片轮播插件/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="114" max-vertical-offset="2755">
+          <caret line="6" column="65" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/城市插件/css/city.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09259259" vertical-offset="2924" max-vertical-offset="4275">
+          <caret line="156" column="14" selection-start-line="156" selection-start-column="14" selection-end-line="156" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/城市插件/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="29" selection-start="3126" selection-end="3134" vertical-scroll-proportion="-15.571428" vertical-offset="1711" max-vertical-offset="2375">
+        <state vertical-scroll-proportion="-8.964286" vertical-offset="1687" max-vertical-offset="2375">
+          <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/城市插件/js/autosearchcitytools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="64" selection-start="7074" selection-end="7074" vertical-scroll-proportion="0.7904762" vertical-offset="2145" max-vertical-offset="2831">
+        <state vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="4997">
+          <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
           <folding>
-            <element signature="e#4441#6276#0" expanded="false" />
-            <marker date="1416476556251" expanded="false" signature="172:220" placeholder="..." />
-            <marker date="1416476556251" expanded="false" signature="1575:1669" placeholder="..." />
-            <marker date="1416476556251" expanded="false" signature="1871:1884" placeholder="..." />
+            <marker date="1416553545338" expanded="true" signature="1863:1957" placeholder="..." />
+            <marker date="1416553545338" expanded="true" signature="2159:2172" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/城市插件/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5405405" vertical-offset="0" max-vertical-offset="1748">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
   </component>
 </project>
-

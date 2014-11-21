@@ -41,14 +41,6 @@ function createHexRandom(){
     }
     return num;
 }
-
-
-/*['shanghai','上海'],['shanghaihongqiao','上海虹桥'],['beijing','北京'],['beijingshoudu','北京首都'],
- ['beijingnanyuan','北京南苑'],['shenzhen','深圳'],['hangzhou','杭州'],['guangzhou','广州'],['chendu','成都'],
- ['nanjing','南京'],['wuhan','武汉'],['huhehaote','呼和浩特'],['chongqing','重庆'],['changsha','长沙'],
- ['kunming','昆明'],['xian','西安'],['qingdao','青岛'],['tianjin','天津'],['ningbo','宁波'],
- ['xiamen','厦门'],['taiyuan','太原'],['dalian','大连'],['jinan','济南'],['sanya','三亚']*/
-
 var searchlist={
     "ch":{
         "a":[['an,shun','安顺'],['an,qing','安庆'],['a,ke,su','阿克苏'],['a,er,shan','阿尔山'],['an,shan','鞍山'],['an,kang','安康'],['a,le,tai','阿勒泰'],['a,li','阿里'],['a,la,shan,you,qi','阿拉善右旗']],

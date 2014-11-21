@@ -18,21 +18,26 @@ function AutomaticSearch(id,config){
             searchData=[],
             searchMessage='';
         if(value.length>0){
-            var reg = /^([\u4e00-\u9fa5||·])$/;//判断中文
-            if(reg.test(value)){
+            var reg = /[^\u4e00-\u9fa5]/;//判断中文
+            if(!reg.test(value)){
                 if(config.languageType==1){//判断是国内还是国外  1:表示国内，2，表示国外
-                    searchData=DataToFiter(searchlist.ch,2,value,0,1);
+                    searchData=searchFilter(searchlist.ch,value,0);
                 }else{
-                    searchData=DataToFiter(searchlist.en,2,value,0,2);
+                    searchData=searchFilter_EN(searchlist.en,value,0);
                 }
             }
             var reg2 = /^[a-zA-Z]+$/;//表示英文
             if(reg2.test(value)){
                 value=value.toLowerCase();
                 if(config.languageType==1){//判断是国内还是国外
-                    searchData=DataToFiter(searchlist.ch,1,value,0,1);
+                    searchData=searchFilterCH(searchlist.ch,value,0);
                 }else{
-
+                    var selectIem=searchFilter_ENW(searchlist.en,value,0);
+                    $.each(selectIem,function(x,y){
+                        var valueitem=[];
+                        valueitem.push(y[0][1],y[1])
+                        searchData.push(valueitem);
+                    });
                 }
             }
             if(searchData.length==0 || searchData==null || searchData==''){
@@ -44,15 +49,41 @@ function AutomaticSearch(id,config){
             html+="<iframe style='z-index: -1; opacity: 0; border: medium none; position: absolute; height: 310px; width: 222px;'></iframe>";
             html+="<div class='show_title'><span class='autofill_hd_inner'>"+searchMessage+"</span><span class='autofill_close show_title'></span></div>";
             html+="<table style='width: 222px;' class='autofill_tray' cellpadding='0' cellspacing='0'><tbody>";
-            for(var i= 0,len=searchData.length;i<len;i++){
-                html+="<tr class='autofill_item enableListRow'><td><div class='match_div'>";
-                var values=searchData[i][0].split(','),valueString="";
-                for(var j= 0;j<values.length;j++){
-                    valueString+=values[j];
+            if(config.count=='yes') {
+                for (var i = 0, len = searchData.length; i < len; i++) {
+                    html += "<tr class='autofill_item enableListRow'><td><div class='match_div'>";
+                    var values = searchData[i][0].split(','), valueString = "";
+                    for (var j = 0; j < values.length; j++) {
+                        valueString += values[j];
+                    }
+                    html += "<span class='match_right'>" + valueString + "</span>";
+                    html += "<span class='match_left'>" + searchData[i][1] + "</span>";
+                    html += "</div></tr>";
                 }
-                html+="<span class='match_right'>"+valueString+"</span>";
-                html+="<span class='match_left'>"+searchData[i][1]+"</span>";
-                html+="</div></tr>";
+            }else{
+                if(searchData.length>=config.count){
+                    for (var i = 0, len = config.count; i < len; i++) {
+                        html += "<tr class='autofill_item enableListRow'><td><div class='match_div'>";
+                        var values = searchData[i][0].split(','), valueString = "";
+                        for (var j = 0; j < values.length; j++) {
+                            valueString += values[j];
+                        }
+                        html += "<span class='match_right'>" + valueString + "</span>";
+                        html += "<span class='match_left'>" + searchData[i][1] + "</span>";
+                        html += "</div></tr>";
+                    }
+                }else{
+                    for (var i = 0, len = searchData.length; i < len; i++) {
+                        html += "<tr class='autofill_item enableListRow'><td><div class='match_div'>";
+                        var values = searchData[i][0].split(','), valueString = "";
+                        for (var j = 0; j < values.length; j++) {
+                            valueString += values[j];
+                        }
+                        html += "<span class='match_right'>" + valueString + "</span>";
+                        html += "<span class='match_left'>" + searchData[i][1] + "</span>";
+                        html += "</div></tr>";
+                    }
+                }
             }
             html+="<tbody></table></div>";
             if(bool){
@@ -89,97 +120,138 @@ function AutomaticSearch(id,config){
         $('#'+SearchwindowID+'  div.show_title span.autofill_close').click(function(){
             GetShowOrHide('#'+SearchwindowID,'hide');
         });
+        //失去焦点事件
+        $(this).blur(function(){
+            GetShowOrHide('#'+SearchwindowID,'hide');
+        });
     });
-
 }
-//过滤数据
-/*
- *data：数据集
- * languageType：语言类型 1:表示英文  2：表示中文
- * searchString：搜索字符串
- * searchLength：搜索当前字符串第个位置
- * languanescope:1表示国内，2表示国外
- */
-function DataToFiter(data,languageType,searchString,searchLength,languanescope){
-    if(searchLength==0 && languageType==1 && languanescope==1){
-        data=DataToFirst(data,searchString);
-    }
-    if(searchString.length<=searchLength)return data;
+//国内中文过滤的方法
+function searchFilter(data,searchString,searchLength){
     var selectData=[];
-    if(languageType==1){
-        for(var i= 0,len=data.length;i<len;i++){
-            var values=data[i],value='';
-            if(languageType==1){
-                value=values[0];
-            }
-            else if(languageType==2)
-                value=values[1];
-            if(value.length>=searchString.length){
-                if(searchLength==0){
-                    if(value.charAt(searchLength)==searchString.charAt(searchLength)){
-                        selectData.push(values);
-                    }
-                }else{
-                    var itemvalue=value.split(','),itemString="",selectItembool=false;
-                    //判断输入的字符串是否等于简写的字符长度
-                    if(searchString.length<=itemvalue.length){
-                        for(var x= 0,vlen=itemvalue.length;x<vlen;x++){
-                            if(itemvalue[x].charAt(0)==searchString.charAt(x)){
-                                selectItembool=true;
-                            }else{
-                                if(searchString.charAt(x)==""){
-                                    selectItembool=true;
-                                }else{
-                                    selectItembool=false;
-                                }
-                            }
-                            itemString+=itemvalue[x];
-                        }
-                        if(selectItembool)selectData.push(values);
-                    }else{
-                        for(var x= 0,vlen=itemvalue.length;x<vlen;x++){
-                            itemString+=itemvalue[x];
-                        }
-                    }
-                    if(!selectItembool)
-                        if(itemString.charAt(searchLength)==searchString.charAt(searchLength)){
-                            selectData.push(values);
-                        }
-                }
-            }
-        }
-    }else if(languageType==2 && languanescope==1){
-        $.each(data,function(i,n){
-            $.each(n,function(j,k){
-                var itemvalues=k[1];
-                if(itemvalues.charAt(searchLength)==searchString.charAt(searchLength)){
+    if(searchLength>=searchString.length)return data;
+    if(searchLength==0) {
+        $.each(data, function (i, n) {
+            $.each(n, function (j, k) {
+                var arr = $.grep(k, function (x, y) {
+                    return x.charAt(searchLength) == searchString.charAt(searchLength);
+                });
+                if (arr.length > 0) {
                     selectData.push(k);
                 }
-            })
+            });
         });
-    }else if(languageType==2 && languanescope==2){
-        $.each(data,function(i,n){
-            var selectItemData=n;
-            if(selectItemData[1].charAt(searchLength)==searchString.charAt(searchLength)){
-                var values=[];
-                values.push(selectItemData[0][1],selectItemData[1]);
-                selectData.push(values);
-                console.log(selectData);
+    }else{
+        $.each(data, function (j, k) {
+            var arr = $.grep(k, function (x, y) {
+                return x.charAt(searchLength) == searchString.charAt(searchLength);
+            });
+            if (arr.length > 0) {
+                selectData.push(k);
             }
-            console.log(selectItemData[1].charAt(searchLength));
         });
     }
-    searchLength=searchLength+1;
-    return DataToFiter(selectData,languageType,searchString,searchLength);
+    searchLength++;
+    return searchFilter(selectData,searchString,searchLength);
 }
-//返回首字母的集合
-function DataToFirst(data,searchString){
-    var charString=searchString.charAt(0);
+//国外中文过滤的方法
+function searchFilter_EN(data,searchString,searchLength){
     var selectData=[];
-    $.each(data,function(i,n){
-        if(i==charString){
-            selectData=n;
+    var reg = /[^\u4e00-\u9fa5]/;
+    if(searchLength>=searchString.length){
+        return data;
+    }else{
+        $.each(data, function (j, k) {
+            var arr = $.grep(k, function (x, y) {
+                if(!reg.test(x)){
+                    return x.charAt(searchLength) == searchString.charAt(searchLength);
+                }else{
+                    if(x.indexOf('(')>-1){
+                        var xFirst= x.substring(0, x.indexOf('('));
+                        var xSectond=x.substring(x.indexOf('(')+1, x.indexOf(')'));
+                        return xFirst.charAt(searchLength) == searchString.charAt(searchLength)||xSectond.charAt(searchLength) == searchString.charAt(searchLength);
+                    }
+                }
+            });
+            if (arr.length > 0) {
+                if(k[0].length==2){
+                    var item=[];
+                    item.push(k[0][1],k[1]);
+                    selectData.push(item);
+                }else{
+                    selectData.push(k);
+                }
+            }
+        });
+        searchLength++;
+        return searchFilter_EN(selectData,searchString,searchLength);
+    }
+}
+//国内拼音过滤方法
+function searchFilterCH(data,searchString,searchLength){
+    var selectData=[];
+    if(searchLength>=searchString.length){
+        return data;
+    }else{
+        if(searchLength==0){
+            $.each(data,function(i,n){
+                if(i==searchString.charAt(0)){
+                    selectData=n;
+                }
+            })
+        }else{
+            $.each(data,function(i,n){
+                var values=n[0].split(','),valuestring="",vs="";
+                for(var v=0;v<values.length;v++){
+                    valuestring+=values[v];
+                    vs+=values[v].charAt(0);
+                }
+                if(valuestring.contains(searchString)){
+                    selectData.push(n);
+                }else if(vs.contains(searchString)){
+                    selectData.push(n);
+                }
+            });
         }
-    });
-    return selectData;
+        searchLength++;
+        return searchFilterCH(selectData,searchString,searchLength);
+    }
+}
+////国外英文过滤方法
+function searchFilter_ENW(data,searchString,searchLength){
+    var selectData=[];
+    if(searchLength>=searchString.length){
+        return data;
+    }else{
+        $.each(data, function (i, n) {
+            var itemvalue = n[0], zhString = '', zhJ = '', ENString = '',zhk='';
+            var itemvalues = itemvalue[0].split(',');
+            if(itemvalue[0].indexOf('(')>-1){
+                zhString=itemvalue[0].substring(0,itemvalue[0].indexOf('('));
+                zhk=itemvalue[0].substring(itemvalue[0].indexOf('(')+1,itemvalue[0].indexOf(')'));
+            }
+            ENString = itemvalue[1].toLowerCase();
+            for (var v = 0; v < itemvalues.length; v++) {
+                zhString += itemvalues[v];
+                zhJ += itemvalues[v].charAt(0);
+            }
+            if (zhString.contains(searchString)) {
+                selectData.push(n);
+            } else if (zhJ.contains(searchString)) {
+                selectData.push(n);
+            } else if (ENString.contains(searchString)) {
+                selectData.push(n);
+            }else if(zhk.length>0){
+                var zhks=zhk.split(','),zhkk='';
+                for(var v=0;v<zhks.length;v++){
+                    zhkk+=zhks[v];
+                }
+                if(zhkk.contains(searchLength)){
+                    selectData.push(n);
+                }
+            }
+        });
+        searchLength++;
+        return searchFilter_ENW(selectData,searchString,searchLength);
+    }
 }
