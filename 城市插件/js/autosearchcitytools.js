@@ -2,11 +2,13 @@
  * Created by zd on 14-11-20.
  */
 function AutomaticSearch(id,config){
+    //键盘上下事件的选择的第几个tr
+    var auto_i=-1;
     //生成窗口的id
     var SearchwindowID='autoComplete'+createHexRandom();
     var html="<div style='left: 63px; top: 18px;display: none;width:222px;' id='"+SearchwindowID+"' class='autofill_wrap autofill_wrap_large'>";
     //键盘事件
-    $('#'+id).keyup(function(){
+    $('#'+id).keyup(function(e){
         var windows=$('#'+SearchwindowID).attr('id');
         var bool=false;
         if(windows!=undefined){
@@ -47,7 +49,7 @@ function AutomaticSearch(id,config){
                     searchData.push(valueitem);
                 });
                 //国内三字码查询
-                if(value.length<=3 && config.languageType==1){
+                if(value.length<=3){
                     var itemdata=searchlist.threedata_ch.split('@');
                     for(var i=0;i<itemdata.length;i++){
                         var a=itemdata[i];
@@ -61,7 +63,6 @@ function AutomaticSearch(id,config){
                             }
                         }
                     }
-                }else if(value.length<=3 && config.languageType==2){//国外三字码查询
                     var itemdata=searchlist.threedata_en.split('@');
                     for(var i=0;i<itemdata.length;i++){
                         var a=itemdata[i];
@@ -148,11 +149,29 @@ function AutomaticSearch(id,config){
                 $(this).css({background:'#fff'});
                 $(this).children().css({color:'#006DAE'});
             });
-            $('#'+SearchwindowID+' .autofill_tray .autofill_item').click(function(){
-                var childerValue=$(this).contains('span:nth-child(2)').text();
-                $('#'+id).val(childerValue);
+            $('#'+SearchwindowID+' .autofill_tray tbody tr').click(function(){
+                var childerValue=$(this).children().children().children()[1];//$(this).contains('span:nth-child(2)').text();
+                $('#'+id).val(childerValue.innerHTML);
                 GetShowOrHide('#'+SearchwindowID,'hide');
+                auto_i=-1;
             });
+            //键盘上事件
+            var selectAuto=$('#'+SearchwindowID+' .autofill_tray tbody tr');
+            if(e.keyCode==38){
+                if(auto_i<0)auto_i=0;
+                auto_i--;
+                $(selectAuto[auto_i]).css({background:'#8AB923'});
+                $(selectAuto[auto_i]).children().css({color:'#fff'});
+            }else if(e.keyCode==40){
+                auto_i++;
+                $(selectAuto[auto_i]).css({background:'#8AB923'});
+                $(selectAuto[auto_i]).children().css({color:'#fff'});
+            }else if(e.keyCode==13){//回车事件
+                var childerValue=$(selectAuto[auto_i]).children().children().children()[1];
+                $('#'+id).val(childerValue.innerHTML);
+                auto_i=-1;
+                GetShowOrHide('#'+SearchwindowID,'hide');
+            }
         }
         //关闭搜索窗口
         $('#'+SearchwindowID+'  div.show_title span.autofill_close').click(function(){
@@ -160,7 +179,10 @@ function AutomaticSearch(id,config){
         });
         //失去焦点事件
         $(this).blur(function(){
-            GetShowOrHide('#'+SearchwindowID,'hide');
+            var childerValue=$('#'+SearchwindowID+' .autofill_tray tbody tr').children().children().children()[1];//$(this).contains('span:nth-child(2)').text();
+            $('#'+id).val(childerValue.innerHTML);
+            //GetShowOrHide('#'+SearchwindowID,'hide');
+            auto_i=-1;
         });
     });
 }
