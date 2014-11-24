@@ -66,8 +66,8 @@ var threedata_ch="@yichun|伊春|LDS@daqing|大庆|DQA@Yushu|玉树|YUS@Kangding
     +"@Yongzhou|永州|LLF@Yulin|榆林|UYN@Yuncheng|运城|YCU@Zhangjiajie|张家界|DYG@Zhanjiang|湛江|ZHA@Zhaotong|昭通|ZAT@Zhengzhou|郑州|CGO@zhijiang|芷江|HJJ"
     +"@Zhongdian|中甸|DIG@Zhoushan|舟山|HSN@Zhuhai|珠海|ZUH@Wuzhou|梧州|WUZ@Eerduosi|鄂尔多斯|DSN@Handan|邯郸|HDG@Qiemo|且末|IQM@Nalati|那拉提|NLT"
     +"@Kanasi|喀纳斯|KJI@Meizhou|梅州|MXZ@Puer|普洱|SYM@Liancheng|连城|LCX@Libo|荔波|LLB@Putuoshan|普陀山|HSN@Jining|济宁|JNG@Hami|哈密|HMI"
-    +"@Tengchong|腾冲|TCZ@Tianshui|天水|THQ@Zhongwei|中卫|ZHY@Guangyuan|广元|GYS@Changbaishan|长白山|NBS@Jixi|鸡西|JXA@Foshan|佛山|FUO@"
-    +"@CN|大新华航空公司|CN@GS|天津航空有限责任公司|GS@NS|东北航空公司|NS@HU|海南航空公司|HU@G5|华夏航空公司|G5@HO|吉祥航空公司|HO"+
+    +"@Tengchong|腾冲|TCZ@Tianshui|天水|THQ@Zhongwei|中卫|ZHY@Guangyuan|广元|GYS@Changbaishan|长白山|NBS@Jixi|鸡西|JXA@Foshan|佛山|FUO@";
+var threadata_common="@CN|大新华航空公司|CN@GS|天津航空有限责任公司|GS@NS|东北航空公司|NS@HU|海南航空公司|HU@G5|华夏航空公司|G5@HO|吉祥航空公司|HO"+
     "@JD|金鹿航空公司|JD@VD|鲲鹏航空有限公司|VD@BK|奥凯航空公司|BK@SC|山东航空公司|SC@FM|上海航空公司|FN@ZH|深圳航空公司|ZH" +
     "@3U|四川航空公司|3U@PN|西部航空公司|PN@MF|厦门航空有限公司|MF@8L|祥鹏航空公司|8L@EU|成都航空有限公司|EU@MU|中国东方航空公司|MU" +
     "@CA|中国国际航空公司|CA@KN|中国联合航空公司|KN@CZ|中国南方航空公司|CZ@JR|幸福航空有限责任公司|JR"+

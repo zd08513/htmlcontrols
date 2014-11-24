@@ -40,7 +40,7 @@ function AutomaticSearch(id,config){
                     });
                 }
                 //国内三字码查询
-                if(searchData.length==0 && config.languageType==1){
+                if(value.length<=3 && config.languageType==1){
                     var itemdata=searchlist.threedata_ch.split('@');
                     for(var i=0;i<itemdata.length;i++){
                         var a=itemdata[i];
@@ -48,13 +48,26 @@ function AutomaticSearch(id,config){
                             var b= a.split('|');
                             var c=b[b.length-1].toLowerCase();
                             if(c.contains(value)){
-                                console.log(b);
-                                console.log(b[b.length-2]);
+                                var items=[];
+                                items.push(b[0],b[1]+"("+b[2]+")");
+                                searchData.push(items);
                             }
                         }
                     }
-                }else if(searchData.length==0 && config.languageType==2){//国外三字码查询
-
+                }else if(value.length<=3 && config.languageType==2){//国外三字码查询
+                    var itemdata=searchlist.threedata_en.split('@');
+                    for(var i=0;i<itemdata.length;i++){
+                        var a=itemdata[i];
+                        if(a.length>0){
+                            var b= a.split('|');
+                            var c=b[b.length-1].toLowerCase();
+                            if(c.contains(value)){
+                                var items=[];
+                                items.push(b[0],b[1]);
+                                searchData.push(items);
+                            }
+                        }
+                    }
                 }
             }
 
