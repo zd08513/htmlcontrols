@@ -1,0 +1,64 @@
+body, html, legend {
+    color: #333;
+}
+.autofill_wrap_large {
+    font: 14px/26px SimSun;
+}
+.autofill_wrap {
+    position: absolute;
+    z-index: 999;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+    background-color: #FFF;
+    border: 1px solid #9B9B9B;
+    font: 12px/24px SimSun;
+}
+.autofill_wrap_large {
+    font: 14px/26px SimSun;
+}
+.autofill_hd_inner {
+    color: #999;
+    font-size: 12px;
+    display: block;
+    padding: 0px 10px;
+}
+.autofill_close {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    top: 7px;
+    right: 10px;
+    background: url('../images/pic.png') repeat scroll 0px -16px transparent;
+    cursor: pointer;
+}
+table {
+    border-spacing: 0px;
+}
+.autofill_tray td {
+    color: #006DAE;
+    padding: 0px 10px;
+}
+.autofill_tray {
+    border-bottom: 1px solid #9B9B9B;
+    border-top: 1px solid #9B9B9B;
+    background: none repeat scroll 0% 0% #FFF;
+}
+.autofill_tray .match_div {
+    padding: 2px 6px;
+}
+.match_right {
+    float: right;
+}
+.autofill_page {
+    text-align: center;
+}
+a {
+    color: #005BB5;
+    text-decoration: none;
+    outline: 0px none;
+}
+.autofill_page a {
+    font-family: '宋体';
+    display: inline-block;
+    font-size: 14px;
+    padding: 0px 3px;
+}

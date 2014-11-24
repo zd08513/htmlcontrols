@@ -38,6 +38,21 @@ function CityWindowShow(id,config){
         }
         //显示当前窗口
         GetShowOrHide(mNoticeID,'show');
+
+        //监听全局事件
+        document.onclick=function(e){
+            var windowTop=input_id.offset().top;
+            var windowLeft=input_id.offset().left;
+            var widowWidth=$(mNoticeID).width();
+            var windowHeight=$(mNoticeID).height();
+            if(e.clientX<windowTop || e.clientX>windowLeft+widowWidth){
+                GetShowOrHide(mNoticeID,'hide');
+            }
+            if(e.clientY<windowTop || e.clientY>windowHeight){
+                GetShowOrHide(mNoticeID,'hide');
+            }
+            console.log(e.clientX+'--'+ e.clientY+'--windowTop:'+windowTop+'--windowLeft:'+windowLeft+'--widowWidth:'+widowWidth+'--windowHeight:'+windowHeight);
+        }
     });
     input_id.blur(function(){
         var value=$(this);
@@ -90,7 +105,6 @@ function CityWindowShow(id,config){
             GetShowOrHide(mNoticeID,'hide');
         });
     }
-
 }
 var mneuChilder=[
     "<div class='mNotice-mTab-content clearfix none'><span class='mNotice-normal mNotice-fixWidth' title='上海'>上海</span><span class='mNotice-normal mNotice-fixWidth' title='北京'>北京</span><span class='mNotice-normal mNotice-fixWidth' title='香港'>香港</span><span class='mNotice-normal mNotice-fixWidth' title='广州'>广州</span><span class='mNotice-normal mNotice-fixWidth' title='杭州'>杭州</span><span class='mNotice-normal mNotice-fixWidth' title='厦门'>厦门</span><span class='mNotice-normal mNotice-fixWidth' title='南京'>南京</span><span class='mNotice-normal mNotice-fixWidth' title='澳门'>澳门</span><span class='mNotice-normal mNotice-fixWidth' title='成都'>成都</span><span class='mNotice-normal mNotice-fixWidth' title='青岛'>青岛</span><span class='mNotice-normal mNotice-fixWidth' title='台北'>台北</span><span class='mNotice-normal mNotice-fixWidth' title='福州'>福州</span><span class='mNotice-normal mNotice-fixWidth' title='天津'>天津</span><span class='mNotice-normal mNotice-fixWidth' title='深圳'>深圳</span><span class='mNotice-normal mNotice-fixWidth' title='大连'>大连</span><span class='mNotice-normal mNotice-fixWidth' title='无锡'>无锡</span><span class='mNotice-normal mNotice-fixWidth' title='重庆'>重庆</span><span class='mNotice-normal mNotice-fixWidth' title='三亚'>三亚</span><span class='mNotice-normal mNotice-fixWidth' title='西安'>西安</span><span class='mNotice-normal mNotice-fixWidth' title='昆明'>昆明</span><span class='mNotice-normal mNotice-fixWidth' title='武汉'>武汉</span><span class='mNotice-normal mNotice-fixWidth' title='沈阳'>沈阳</span></div>",

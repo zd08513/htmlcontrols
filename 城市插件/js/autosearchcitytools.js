@@ -20,25 +20,32 @@ function AutomaticSearch(id,config){
         if(value.length>0){
             var reg = /[^\u4e00-\u9fa5]/;//判断中文
             if(!reg.test(value)){
-                if(config.languageType==1){//判断是国内还是国外  1:表示国内，2，表示国外
-                    searchData=searchFilter(searchlist.ch,value,0);
-                }else{
-                    searchData=searchFilter_EN(searchlist.en,value,0);
-                }
+                //获取国内数据
+                var itemsch=searchFilter(searchlist.ch,value,0);
+                $.each(itemsch,function(i,n){
+                    searchData.push(n);
+                });
+                //获取国外数据
+                var itemsen=searchFilter_EN(searchlist.en,value,0);
+                $.each(itemsen,function(i,n){
+                    searchData.push(n);
+                });
             }
             var reg2 = /^[a-zA-Z]+$/;//表示英文
             if(reg2.test(value)){
                 value=value.toLowerCase();
-                if(config.languageType==1){//判断是国内还是国外
-                    searchData=searchFilterCH(searchlist.ch,value,0);
-                }else{
-                    var selectIem=searchFilter_ENW(searchlist.en,value,0);
-                    $.each(selectIem,function(x,y){
-                        var valueitem=[];
-                        valueitem.push(y[0][1],y[1])
-                        searchData.push(valueitem);
-                    });
-                }
+                //获取国内数据
+                var itemsch=searchFilterCH(searchlist.ch,value,0);
+                $.each(itemsch,function(i,n){
+                    searchData.push(n);
+                });
+                //获取国外数据
+                var selectIem=searchFilter_ENW(searchlist.en,value,0);
+                $.each(selectIem,function(x,y){
+                    var valueitem=[];
+                    valueitem.push(y[0][1],y[1])
+                    searchData.push(valueitem);
+                });
                 //国内三字码查询
                 if(value.length<=3 && config.languageType==1){
                     var itemdata=searchlist.threedata_ch.split('@');
@@ -47,7 +54,7 @@ function AutomaticSearch(id,config){
                         if(a.length>0){
                             var b= a.split('|');
                             var c=b[b.length-1].toLowerCase();
-                            if(c.contains(value)){
+                            if(GetFind(c,value,true)){
                                 var items=[];
                                 items.push(b[0],b[1]+"("+b[2]+")");
                                 searchData.push(items);
@@ -61,7 +68,7 @@ function AutomaticSearch(id,config){
                         if(a.length>0){
                             var b= a.split('|');
                             var c=b[b.length-1].toLowerCase();
-                            if(c.contains(value)){
+                            if(GetFind(c,value,true)){
                                 var items=[];
                                 items.push(b[0],b[1]);
                                 searchData.push(items);
@@ -142,7 +149,7 @@ function AutomaticSearch(id,config){
                 $(this).children().css({color:'#006DAE'});
             });
             $('#'+SearchwindowID+' .autofill_tray .autofill_item').click(function(){
-                var childerValue=$(this).find('span:nth-child(2)').text();
+                var childerValue=$(this).contains('span:nth-child(2)').text();
                 $('#'+id).val(childerValue);
                 GetShowOrHide('#'+SearchwindowID,'hide');
             });
@@ -237,9 +244,11 @@ function searchFilterCH(data,searchString,searchLength){
                     valuestring+=values[v];
                     vs+=values[v].charAt(0);
                 }
-                if(valuestring.contains(searchString)){
+                //if(valuestring.length==0 || vs.length==0)return;
+                //if(valuestring.filter(searchString)){
+                if(GetFind(valuestring,searchString,true)){
                     selectData.push(n);
-                }else if(vs.contains(searchString)){
+                }else if(GetFind(vs,searchString,true)){
                     selectData.push(n);
                 }
             });
@@ -266,18 +275,18 @@ function searchFilter_ENW(data,searchString,searchLength){
                 zhString += itemvalues[v];
                 zhJ += itemvalues[v].charAt(0);
             }
-            if (zhString.contains(searchString)) {
+            if (GetFind(zhString,searchString,true)) {
                 selectData.push(n);
-            } else if (zhJ.contains(searchString)) {
+            } else if (GetFind(zhJ,searchString,true)) {
                 selectData.push(n);
-            } else if (ENString.contains(searchString)) {
+            } else if (GetFind(ENString,searchString,true)) {
                 selectData.push(n);
             }else if(zhk.length>0){
                 var zhks=zhk.split(','),zhkk='';
                 for(var v=0;v<zhks.length;v++){
                     zhkk+=zhks[v];
                 }
-                if(zhkk.contains(searchLength)){
+                if(GetFind(zhkk,searchLength,true)){
                     selectData.push(n);
                 }
             }
@@ -285,4 +294,10 @@ function searchFilter_ENW(data,searchString,searchLength){
         searchLength++;
         return searchFilter_ENW(selectData,searchString,searchLength);
     }
+}
+function GetFind(value,search,bool_v){
+    var bool_v=false;
+    if(value.indexOf(search)>-1)
+        bool_v=true;
+    return bool_v;
 }
