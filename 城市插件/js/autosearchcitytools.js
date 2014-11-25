@@ -187,7 +187,13 @@ function AutomaticSearch(id,config){
                 $(selectAuto[auto_i]).css({background:'#8AB923'});
                 $(selectAuto[auto_i]).children().css({color:'#fff'});
             }else if(e.keyCode==40){
-                auto_i++;
+                var selectSumCount=0;
+                if(config.count=='yes' || searchData.length<config.count){
+                    selectSumCount=searchData.length;
+                }else
+                    selectSumCount=config.count;
+                if(selectSumCount>auto_i)
+                    auto_i++;
                 $(selectAuto[auto_i]).css({background:'#8AB923'});
                 $(selectAuto[auto_i]).children().css({color:'#fff'});
             }else if(e.keyCode==13){//回车事件
