@@ -6,6 +6,8 @@ body, html, legend {
 }
 .mNotice-wrap {
     width: 422px;
+    background: #fff;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
 }
 blockquote, body, button, caption, dd, dl, fieldset, form, h1, h2, h3, h4, h5, h6, html, input, legend, ol, p, pre, select, td, textarea, th, ul {
     margin: 0px;
@@ -19,7 +21,7 @@ blockquote, body, button, caption, dd, dl, fieldset, form, h1, h2, h3, h4, h5, h
     font-weight: normal;
     border-width: 1px 1px 0px;
     border-style: solid solid none;
-    border-color: #9B9B9B #9B9B9B -moz-use-text-color;
+    border-color: #9B9B9B #9B9B9B;
     -moz-border-top-colors: none;
     -moz-border-right-colors: none;
     -moz-border-bottom-colors: none;
@@ -72,6 +74,8 @@ blockquote, body, button, caption, dd, dl, fieldset, form, h1, h2, h3, h4, h5, h
 }
 .mNotice-mTab-head {
     font-weight: normal;
+    border: 1px solid #9b9b9b;
+    border-bottom: 0;
 }
 .mNotice-mTab-head {
     color: #FFF;
@@ -113,6 +117,7 @@ li.mNotice-mTab-item{
     font-weight: 500;
 }
 .mNotice-mTab-item{
+    border:solid 1px #fff;
     color: #2183C0;
     float: left;
     border-width: 1px 1px 0px;

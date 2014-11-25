@@ -6,7 +6,7 @@ function AutomaticSearch(id,config){
     var auto_i=-1;
     //生成窗口的id
     var SearchwindowID='autoComplete'+createHexRandom();
-    var html="<div style='left: 63px; top: 18px;display: none;width:222px;' id='"+SearchwindowID+"' class='autofill_wrap autofill_wrap_large'>";
+    var html="<div style='left: 63px; top: 18px;display: none;width:222px;' data-autosearch='citysearch' id='"+SearchwindowID+"' class='autofill_wrap autofill_wrap_large'>";
     //键盘事件
     $('#'+id).keyup(function(e){
         var windows=$('#'+SearchwindowID).attr('id');
@@ -143,11 +143,35 @@ function AutomaticSearch(id,config){
         if(searchData.length>0){
             //鼠标经过换色
             $('#'+SearchwindowID+' .autofill_tray tbody tr').hover(function(){
-                $(this).css({background:'#8AB923'});
-                $(this).children().css({color:'#fff'});
+                var select_value=$(this).children().children().children()[1].innerHTML;
+                var tr_objs=$('#'+SearchwindowID+' .autofill_tray tbody tr');
+                $.each(tr_objs,function(t,r){
+                    var value_span=$(r).children().children().children()[1].innerHTML;
+                    if(value_span==select_value){
+                        auto_i=t;
+                        $(this).css({background:'#8AB923'});
+                        $(this).children().css({color:'#fff'});
+                    }else{
+                        $(this).css({background:'#fff'});
+                        $(this).children().css({color:'#006DAE'});
+                    }
+                });
             },function(){
-                $(this).css({background:'#fff'});
-                $(this).children().css({color:'#006DAE'});
+                /*$(this).css({background:'#fff'});
+                $(this).children().css({color:'#006DAE'});*/
+                var select_value=$(this).children().children().children()[1].innerHTML;
+                var tr_objs=$('#'+SearchwindowID+' .autofill_tray tbody tr');
+                $.each(tr_objs,function(t,r){
+                    var value_span=$(r).children().children().children()[1].innerHTML;
+                    if(value_span==select_value){
+                        auto_i=t;
+                        $(this).css({background:'#8AB923'});
+                        $(this).children().css({color:'#fff'});
+                    }else{
+                        $(this).css({background:'#fff'});
+                        $(this).children().css({color:'#006DAE'});
+                    }
+                });
             });
             $('#'+SearchwindowID+' .autofill_tray tbody tr').click(function(){
                 var childerValue=$(this).children().children().children()[1];//$(this).contains('span:nth-child(2)').text();
@@ -172,18 +196,49 @@ function AutomaticSearch(id,config){
                 auto_i=-1;
                 GetShowOrHide('#'+SearchwindowID,'hide');
             }
+            //监听全局事件
+            document.onclick=function(e){
+                var windowTop=$('#'+id).offset().top;
+                var windowLeft=$('#'+id).offset().left;
+                var widowWidth=$('#'+SearchwindowID).width();
+                var windowHeight=$('#'+SearchwindowID).height();
+                if($.browser.msie){
+                    if (window.event.pageX < windowLeft || window.event.pageX > windowLeft + widowWidth) {
+                        GetShowOrHide('#' + SearchwindowID, 'hide');
+                    }
+                    if (window.event.pageY < windowTop || window.event.pageY > windowHeight + windowTop) {
+                        GetShowOrHide('#' + SearchwindowID, 'hide');
+                    }
+                }else {
+                    if (e.clientX < windowLeft || e.clientX > windowLeft + widowWidth) {
+                        GetShowOrHide('#' + SearchwindowID, 'hide');
+                    }
+                    if (e.clientY < windowTop || e.clientY > windowHeight + windowTop) {
+                        GetShowOrHide('#' + SearchwindowID, 'hide');
+                    }
+                }
+                //console.log(e.clientX+'--'+ e.clientY+'--windowTop:'+windowTop+'--windowLeft:'+windowLeft+'--widowWidth:'+widowWidth+'--windowHeight:'+windowHeight);
+            }
         }
         //关闭搜索窗口
         $('#'+SearchwindowID+'  div.show_title span.autofill_close').click(function(){
             GetShowOrHide('#'+SearchwindowID,'hide');
         });
         //失去焦点事件
-        $(this).blur(function(){
+        /*$(this).blur(function(){
             var childerValue=$('#'+SearchwindowID+' .autofill_tray tbody tr').children().children().children()[1];//$(this).contains('span:nth-child(2)').text();
             $('#'+id).val(childerValue.innerHTML);
-            //GetShowOrHide('#'+SearchwindowID,'hide');
+            GetShowOrHide('#'+SearchwindowID,'hide');
             auto_i=-1;
-        });
+        });*/
+    });
+    //触发触键事件
+    $('#'+id).focus(function(){
+        var show_ids=$("div[data-autosearch='citysearch']");
+        for(var i= 0,len=show_ids.length;i<len;i++){
+            if($(show_ids[i]).attr('id')!=id)//隐藏其它不活动的窗口
+                GetShowOrHide('#'+$(show_ids[i]).attr('id'),'hide');
+        }
     });
 }
 //国内中文过滤的方法

@@ -40,19 +40,32 @@ function CityWindowShow(id,config){
         GetShowOrHide(mNoticeID,'show');
 
         //监听全局事件
-        /*document.onclick=function(e){
+        document.onclick=function(event){
             var windowTop=input_id.offset().top;
             var windowLeft=input_id.offset().left;
             var widowWidth=$(mNoticeID).width();
             var windowHeight=$(mNoticeID).height();
-            if(e.clientX<windowTop || e.clientX>windowLeft+widowWidth){
-                GetShowOrHide(mNoticeID,'hide');
+            if($.browser.msie){
+                if(window.event.pageX<windowLeft || window.event.pageX>windowLeft+widowWidth){
+                    GetShowOrHide(mNoticeID,'hide');
+                }
+                if(window.event.pageY<windowTop){
+                    GetShowOrHide(mNoticeID,'hide');
+                }
+                if(window.event.pageY>windowHeight+windowTop){
+                    GetShowOrHide(mNoticeID,'hide');
+                }
+                //console.log(window.event.pageX+'--'+ window.event.pageY+'--windowTop:'+windowTop+'--windowLeft:'+windowLeft+'--widowWidth:'+widowWidth+'--windowHeight:'+windowHeight);
+            }else{
+                if(event.clientX<windowLeft || event.clientX>windowLeft+widowWidth){
+                    GetShowOrHide(mNoticeID,'hide');
+                }
+                if(event.clientY<windowTop || event.clientY>windowHeight+windowTop){
+                    GetShowOrHide(mNoticeID,'hide');
+                }
             }
-            if(e.clientY<windowTop || e.clientY>windowHeight){
-                GetShowOrHide(mNoticeID,'hide');
-            }
-            console.log(e.clientX+'--'+ e.clientY+'--windowTop:'+windowTop+'--windowLeft:'+windowLeft+'--widowWidth:'+widowWidth+'--windowHeight:'+windowHeight);
-        }*/
+            //console.log(e.clientX+'--'+ e.clientY+'--windowTop:'+windowTop+'--windowLeft:'+windowLeft+'--widowWidth:'+widowWidth+'--windowHeight:'+windowHeight);
+        }
     });
     input_id.blur(function(){
         var value=$(this);
