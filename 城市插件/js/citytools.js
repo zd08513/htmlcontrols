@@ -12,13 +12,31 @@ function CityWindowShow(id,config){
     //生成提示窗口的Id
     var mNoticeID="mNotice"+createHexRandom();
     var html="<div data-window='citywindow' style=\"z-index: 2000; position: absolute; background-color: #FFF;\" class='mNotice-wrap' id='"+mNoticeID+"'>";
+    //判断输入框是否只读
+    if(config.readOnly!=undefined || config.readOnly!=null){
+        if(config.readOnly){
+            $('#'+id).attr('readonly','readonly');
+            $('#'+id).css({cursor:'pointer'});
+        }
+    }
     if(config.type==1){
         html+=GetMenuData(1,config.status);
     }else if(config.type==2){
         html+=GetMenuData(2,config.status);
+    }else if(config.type==3){
+        html+=GetMenuDataList();
+    }else if(config.type==4){
+        html+=GetMenuDataZiYou();
+    }else if(config.type==5){
+        html+=GetMenuDataZiYouBlack();
     }
     html+="</div>";
     $('body').prepend(html);
+    if(config.type==3){
+        $('#'+mNoticeID).css({width:'360px'});
+    }else if(config.type==4 || config.type==5){
+        $('#'+mNoticeID).css({width:'410px'});
+    }
     //初使化隐藏控件
     mNoticeID="#"+mNoticeID;
     $(mNoticeID).hide();
@@ -72,49 +90,89 @@ function CityWindowShow(id,config){
         if(value.val().length==0 || value.val()=='')
             value.val(input_id.attr('title'));
     });
-    //触发触键事件
-    input_id.keydown(function(){
-        GetShowOrHide(mNoticeID,'hide');
-    });
-    //关闭事件
-    $(mNoticeID+' .mNotice-mTab .mNotice-mTab-head .mNotice-close').click(function(){
-        GetShowOrHide(mNoticeID,'hide');
-    });
-    //获取菜单名称
-    var items=$(mNoticeID+' .mNotice-mTab .mNotice-mTab-wrap .mNotice-mTab-tab-tray .mNotice-mTab-item');
-    //获取相应子菜单
-    var lists=$(mNoticeID+' .mNotice-mTab .mNotice-mTab-wrap .mNotice-mTab-content');
-    for(var i= 0,len=items.length;i<len;i++){
-        $(items[i]).click(function(){
-            for(var j=0;j<len;j++){
-                $(items[j]).removeClass('current');
-            }
-            $(this).addClass('current');
-            for(var j=0;j<len;j++){
-                if($(items[j]).attr('class').indexOf('current')>-1){
-                    $(lists[j]).removeClass('none');
-                }else{
-                    $(lists[j]).addClass('none');
-                }
-            }
+    if(config.type!=4 && config.type!=5){
+        //触发触键事件
+        input_id.keydown(function(){
+            GetShowOrHide(mNoticeID,'hide');
         });
-    }
-    //悬停  移除
-    var list_MenuChilder=$(mNoticeID+' .mNotice-mTab .mNotice-mTab-wrap .mNotice-mTab-content .mNotice-normal');
-    list_MenuChilder.hover(function(){
-        $(this).addClass('mNotice-hover');
-        $(this).css({color: '#F60'});
-    },function(){
-        $(this).removeClass('mNotice-hover');
-        $(this).css({color: '#333'});
-    });
-    list_MenuChilder.click(function(){
-        input_id.val($(this).attr('title'));
-        GetShowOrHide(mNoticeID,'hide');
-    });
-    //true 触发键盘事件
-    if(config.automaticsearch){
-        input_id.keyup(function(){
+        //关闭事件
+        $(mNoticeID+' .mNotice-mTab .mNotice-mTab-head .mNotice-close').click(function(){
+            GetShowOrHide(mNoticeID,'hide');
+        });
+        //获取菜单名称
+        var items=$(mNoticeID+' .mNotice-mTab .mNotice-mTab-wrap .mNotice-mTab-tab-tray .mNotice-mTab-item');
+        //获取相应子菜单
+        var lists=$(mNoticeID+' .mNotice-mTab .mNotice-mTab-wrap .mNotice-mTab-content');
+        for(var i= 0,len=items.length;i<len;i++){
+            $(items[i]).click(function(){
+                for(var j=0;j<len;j++){
+                    $(items[j]).removeClass('current');
+                }
+                $(this).addClass('current');
+                for(var j=0;j<len;j++){
+                    if($(items[j]).attr('class').indexOf('current')>-1){
+                        $(lists[j]).removeClass('none');
+                    }else{
+                        $(lists[j]).addClass('none');
+                    }
+                }
+            });
+        }
+        //悬停  移除
+        var list_MenuChilder=$(mNoticeID+' .mNotice-mTab .mNotice-mTab-wrap .mNotice-mTab-content .mNotice-normal');
+        list_MenuChilder.hover(function(){
+            $(this).addClass('mNotice-hover');
+            $(this).css({color: '#F60'});
+        },function(){
+            $(this).removeClass('mNotice-hover');
+            $(this).css({color: '#333'});
+        });
+        list_MenuChilder.click(function(){
+            input_id.val($(this).attr('title'));
+            GetShowOrHide(mNoticeID,'hide');
+        });
+        //true 触发键盘事件
+        if(config.automaticsearch){
+            input_id.keyup(function(){
+                GetShowOrHide(mNoticeID,'hide');
+            });
+        }
+    }else if(config.type==4 || config.type==5){
+        //获取菜单名称、获取相应子菜单
+        var items="",lists="";
+        if(config.type==4){
+            items=$(mNoticeID+' .iv_notice .iv_notice_con .iv_notice_tab li');
+            lists=$(mNoticeID+'  .iv_notice .iv_notice_con .iv_notice_tab_con');
+        }else if(config.type==5){
+            items=$(mNoticeID+' .iv_notice .iv_notice_con .iv_notice_tab li');
+            lists=$(mNoticeID+'  .iv_notice .iv_notice_con .iv_notice_tab_con');
+        }
+        for(var i= 0,len=items.length;i<len;i++){
+            $(items[i]).click(function(){
+                for(var j=0;j<len;j++){
+                    $(items[j]).removeClass('current');
+                }
+                $(this).addClass('current');
+                for(var j=0;j<len;j++){
+                    if($(items[j]).attr('class').indexOf('current')>-1){
+                        $(lists[j]).removeClass('none');
+                    }else{
+                        $(lists[j]).addClass('none');
+                    }
+                }
+            });
+        }
+        //悬停  移除
+        var list_MenuChilder=$(mNoticeID+' .iv_notice .iv_notice_con .iv_notice_tab_con .mNotice-normal');
+        list_MenuChilder.hover(function(){
+            $(this).addClass('mNotice-hover');
+            $(this).css({color: '#F60'});
+        },function(){
+            $(this).removeClass('mNotice-hover');
+            $(this).css({color: '#333'});
+        });
+        list_MenuChilder.click(function(){
+            input_id.val($(this).attr('title'));
             GetShowOrHide(mNoticeID,'hide');
         });
     }
@@ -194,5 +252,58 @@ function GetMenuData(g,type){
         html+="<dl class='clearfix mNotice-block'><dt class='mNotice-title'>Y</dt><dd class='mNotice-def'><span class='mNotice-normal mNotice-fixWidth' title='宜昌'>宜昌</span><span class='mNotice-normal mNotice-fixWidth' title='盐城'>盐城</span><span class='mNotice-normal mNotice-fixWidth' title='延吉'>延吉</span><span class='mNotice-normal mNotice-fixWidth' title='宜宾'>宜宾</span><span class='mNotice-normal mNotice-fixWidth' title='延安'>延安</span><span class='mNotice-normal mNotice-fixWidth' title='运城'>运城</span><span class='mNotice-normal mNotice-fixWidth' title='烟台'>烟台</span><span class='mNotice-normal mNotice-fixWidth' title='银川'>银川</span><span class='mNotice-normal mNotice-fixWidth' title='宜春'>宜春</span><span class='mNotice-normal mNotice-fixWidth' title='扬州'>扬州</span><span class='mNotice-normal mNotice-fixWidth' title='玉树'>玉树</span><span class='mNotice-normal mNotice-fixWidth' title='榆林'>榆林</span><span class='mNotice-normal mNotice-fixWidth' title='元谋'>元谋</span><span class='mNotice-normal mNotice-fixWidth' title='伊宁'>伊宁</span><span class='mNotice-normal mNotice-fixWidth' title='伊春'>伊春</span><span class='mNotice-normal mNotice-fixWidth' title='义乌'>义乌</span><span class='mNotice-normal mNotice-fixWidth' title='永州'>永州</span></dd>";
         html+="</dl><dl class='clearfix mNotice-block'><dt class='mNotice-title'>Z</dt><dd class='mNotice-def'><span class='mNotice-normal mNotice-fixWidth' title='珠海'>珠海</span><span class='mNotice-normal mNotice-fixWidth' title='湛江'>湛江</span><span class='mNotice-normal mNotice-fixWidth' title='郑州'>郑州</span><span class='mNotice-normal mNotice-fixWidth' title='张家口'>张家口</span><span class='mNotice-normal mNotice-fixWidth' title='遵义'>遵义</span><span class='mNotice-normal mNotice-fixWidth' title='张掖'>张掖</span><span class='mNotice-normal mNotice-fixWidth' title='昭通'>昭通</span><span class='mNotice-normal mNotice-fixWidth' title='舟山'>舟山</span><span class='mNotice-normal mNotice-fixWidth' title='张家界'>张家界</span><span class='mNotice-normal mNotice-fixWidth' title='镇江'>镇江</span></dd></dl></div>";
     }
+    return html;
+}
+//菜单列表
+function GetMenuDataList(){
+    var html="<iframe style='z-index: -1; opacity: 0; border: medium none; position: absolute; height: 216px; width: 360px;'></iframe>";
+    html+="<div class='mNotice-mTab mNotice-mTabs'><h4 class='mNotice-mTab-head'>热门目的地<span class='mNotice-mTab-head-remark'>(可直接输入城市或城市拼音)</span></h4>";
+    html+="<div id='mNotice-mTab-hotelCity2' class='mNotice-mTab-wrap'>";
+    html+="<div class='mNotice-mTab-content' id='cityhot2'>";
+    for(var i= 0,menu_length=searchlist.changxianyouMenu.length;i<menu_length;i++){
+        html+="<dl class='clearfix mNotice-block'><dt class='mNotice-title'>"+searchlist.changxianyouMenu[i]+"</dt><dd class='mNotice-def'>";
+        for(var j= 0,menu_child_length=searchlist.changxianyouMenuChild[i].length;j<menu_child_length;j++){
+            var value=searchlist.changxianyouMenuChild[i][j][1];
+            html+="<span class=\"mNotice-normal\" title="+value+">"+value+"</span>";
+        }
+        html+="</dd></dl>";
+    }
+    html+="</div>";
+    html+="</div>";
+    html+="</div>";
+    return html;
+}
+//自由行列表
+function GetMenuDataZiYou(){
+    var html="<iframe style='z-index: -1; opacity: 0; border: medium none; position: absolute; height: 139px; width: 360px;'></iframe>"
+    +"<div class='iv_notice iv_start_notice'>"
+    +"<div class='iv_notice_title'>出发地<span></span></div>"
+    +"<div class='iv_notice_con'>"
+    +"<ul class='iv_notice_tab mNotice-mTab-tab-tray'>"
+    +"<li class='current'>热门</li><li class=''>ABCDEF</li><li class=''>GHJKLM</li><li class=''>NPQRS</li><li class=''>TWXYZ</li></ul>"
+    +"<div class='iv_notice_tab_con mNotice-mTab-content'><a href='javascript:void(0)' title='上海' target='_self' class='mNotice-normal'>上海</a><a href='javascript:void(0)' title='北京' target='_self' class='mNotice-normal'>北京</a><a href='javascript:void(0)' title='广州' target='_self' class='mNotice-normal'>广州</a><a href='javascript:void(0)' title='杭州' target='_self' class='mNotice-normal'>杭州</a><a href='javascript:void(0)' title='南京' target='_self' class='mNotice-normal'>南京</a><a href='javascript:void(0)' title='天津' target='_self' class='mNotice-normal'>天津</a><a href='javascript:void(0)' title='成都' target='_self' class='mNotice-normal'>成都</a><a href='javascript:void(0)' title='深圳' target='_self' class='mNotice-normal'>深圳</a><a href='javascript:void(0)' title='苏州' target='_self' class='mNotice-normal'>苏州</a><a href='javascript:void(0)' title='武汉' target='_self' class='mNotice-normal'>武汉</a><a href='javascript:void(0)' title='重庆' target='_self' class='mNotice-normal'>重庆</a></div>"
+    +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='北京' target='_self' class='mNotice-normal'>北京</a><a href='javascript:void(0)' title='重庆' target='_self' class='mNotice-normal'>重庆</a><a href='javascript:void(0)' title='常州' target='_self' class='mNotice-normal'>常州</a><a href='javascript:void(0)' title='成都' target='_self' class='mNotice-normal'>成都</a><a href='javascript:void(0)' title='长沙' target='_self' class='mNotice-normal'>长沙</a><a href='javascript:void(0)' title='东莞' target='_self' class='mNotice-normal'>东莞</a><a href='javascript:void(0)' title='佛山' target='_self' class='mNotice-normal'>佛山</a><a href='javascript:void(0)' title='福州' target='_self' class='mNotice-normal'>福州</a></div>"
+    +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='广州' target='_self' class='mNotice-normal'>广州</a><a href='javascript:void(0)' title='合肥' target='_self' class='mNotice-normal'>合肥</a><a href='javascript:void(0)' title='哈尔滨' target='_self' class='mNotice-normal'>哈尔滨</a><a href='javascript:void(0)' title='杭州' target='_self' class='mNotice-normal'>杭州</a><a href='javascript:void(0)' title='湖州' target='_self' class='mNotice-normal'>湖州</a><a href='javascript:void(0)' title='济南' target='_self' class='mNotice-normal'>济南</a><a href='javascript:void(0)' title='嘉兴' target='_self' class='mNotice-normal'>嘉兴</a><a href='javascript:void(0)' title='金华' target='_self' class='mNotice-normal'>金华</a><a href='javascript:void(0)' title='昆明' target='_self' class='mNotice-normal'>昆明</a></div>"
+    +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='南京' target='_self' class='mNotice-normal'>南京</a><a href='javascript:void(0)' title='南通' target='_self' class='mNotice-normal'>南通</a><a href='javascript:void(0)' title='宁波' target='_self' class='mNotice-normal'>宁波</a><a href='javascript:void(0)' title='青岛' target='_self' class='mNotice-normal'>青岛</a><a href='javascript:void(0)' title='上海' target='_self' class='mNotice-normal'>上海</a><a href='javascript:void(0)' title='绍兴' target='_self' class='mNotice-normal'>绍兴</a><a href='javascript:void(0)' title='深圳' target='_self' class='mNotice-normal'>深圳</a><a href='javascript:void(0)' title='苏州' target='_self' class='mNotice-normal'>苏州</a><a href='javascript:void(0)' title='沈阳' target='_self' class='mNotice-normal'>沈阳</a></div>"
+    +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='台州' target='_self' class='mNotice-normal'>台州</a><a href='javascript:void(0)' title='泰州' target='_self' class='mNotice-normal'>泰州</a><a href='javascript:void(0)' title='天津' target='_self' class='mNotice-normal'>天津</a><a href='javascript:void(0)' title='温州' target='_self' class='mNotice-normal'>温州</a><a href='javascript:void(0)' title='武汉' target='_self' class='mNotice-normal'>武汉</a><a href='javascript:void(0)' title='无锡' target='_self' class='mNotice-normal'>无锡</a><a href='javascript:void(0)' title='香港' target='_self' class='mNotice-normal'>香港</a><a href='javascript:void(0)' title='厦门' target='_self' class='mNotice-normal'>厦门</a><a href='javascript:void(0)' title='西安' target='_self' class='mNotice-normal'>西安</a><a href='javascript:void(0)' title='扬州' target='_self' class='mNotice-normal'>扬州</a><a href='javascript:void(0)' title='镇江' target='_self' class='mNotice-normal'>镇江</a><a href='javascript:void(0)' title='舟山' target='_self' class='mNotice-normal'>舟山</a></div>"
+    +"</div></div>";
+    return html;
+}
+//自由行返程列表
+function GetMenuDataZiYouBlack(){
+    var html="<iframe style='z-index: -1; opacity: 0; border: medium none; position: absolute; height: 139px; width: 360px;'></iframe>"
+        +"<div class='iv_notice iv_start_notice'>"
+        +"<div class='iv_notice_title'>目的地<span>(可直接输入城市名)</span></div>"
+        +"<div class='iv_notice_con'>"
+        +"<ul class='iv_notice_tab mNotice-mTab-tab-tray'>"
+        +"<li class='current'>热门</li><li class=''>港澳</li><li class=''>日韩</li><li class=''>泰国</li><li class=''>东南亚</li><li class=''>欧美澳</li><li class=''>海岛旅游</li></ul>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content'><a href='javascript:void(0)' title='港澳' target='_self' class='mNotice-normal'>港澳</a><a href='javascript:void(0)' title='清迈' target='_self' class='mNotice-normal'>清迈</a><a href='javascript:void(0)' title='首尔' target='_self' class='mNotice-normal'>首尔</a><a href='javascript:void(0)' title='东京' target='_self' class='mNotice-normal'>东京</a><a href='javascript:void(0)' title='塞班岛' target='_self' class='mNotice-normal'>塞班岛</a><a href='javascript:void(0)' title='大阪' target='_self' class='mNotice-normal'>大阪</a><a href='javascript:void(0)' title='巴厘岛' target='_self' class='mNotice-normal'>巴厘岛</a><a href='javascript:void(0)' title='普吉岛' target='_self' class='mNotice-normal'>普吉岛</a><a href='javascript:void(0)' title='济州岛' target='_self' class='mNotice-normal'>济州岛</a><a href='javascript:void(0)' title='马尔代夫' target='_self' class='mNotice-normal'>马尔代夫</a><a href='javascript:void(0)' title='新加坡' target='_self' class='mNotice-normal'>新加坡</a><a href='javascript:void(0)' title='曼谷' target='_self' class='mNotice-normal'>曼谷</a><a href='javascript:void(0)' title='毛里求斯' target='_self' class='mNotice-normal'>毛里求斯</a><a href='javascript:void(0)' title='欧洲' target='_self' class='mNotice-normal'>欧洲</a><a href='javascript:void(0)' title='美国' target='_self' class='mNotice-normal'>美国</a><a href='javascript:void(0)' title='澳洲' target='_self' class='mNotice-normal'>澳洲</a></div>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='香港' target='_self' class='mNotice-normal'>香港</a><a href='javascript:void(0)' title='澳门' target='_self' class='mNotice-normal'>澳门</a><a href='javascript:void(0)' title='港澳' target='_self' class='mNotice-normal'>港澳</a></div>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='日本' target='_self' class='mNotice-normal iv_notice_main_title'>日本</a><a href='javascript:void(0)' title='东京' target='_self' class='mNotice-normal'>东京</a><a href='javascript:void(0)' title='京都' target='_self' class='mNotice-normal'>京都</a><a href='javascript:void(0)' title='大阪' target='_self' class='mNotice-normal'>大阪</a><a href='javascript:void(0)' title='冲绳' target='_self' class='mNotice-normal'>冲绳</a><a href='javascript:void(0)' title='名古屋' target='_self' class='mNotice-normal'>名古屋</a><a href='javascript:void(0)' title='箱根' target='_self' class='mNotice-normal'>箱根</a><a href='javascript:void(0)' title='成田' target='_self' class='mNotice-normal'>成田</a><a href='javascript:void(0)' title='关西' target='_self' class='mNotice-normal'>关西</a><a href='javascript:void(0)' title='札幌' target='_self' class='mNotice-normal'>札幌</a><a href='javascript:void(0)' title='韩国' target='_self' class='mNotice-normal iv_notice_main_title'>韩国</a><a href='javascript:void(0)' title='首尔' target='_self' class='mNotice-normal'>首尔</a><a href='javascript:void(0)' title='济州岛' target='_self' class='mNotice-normal'>济州岛</a></div>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='曼谷' target='_self' class='mNotice-normal'>曼谷</a><a href='javascript:void(0)' title='芭堤雅' target='_self' class='mNotice-normal'>芭堤雅</a><a href='javascript:void(0)' title='清迈' target='_self' class='mNotice-normal'>清迈</a><a href='javascript:void(0)' title='苏梅岛' target='_self' class='mNotice-normal'>苏梅岛</a><a href='javascript:void(0)' title='甲米' target='_self' class='mNotice-normal'>甲米</a><a href='javascript:void(0)' title='华欣' target='_self' class='mNotice-normal'>华欣</a></div>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='新加坡' target='_self' class='mNotice-normal'>新加坡</a><a href='javascript:void(0)' title='兰卡威' target='_self' class='mNotice-normal'>兰卡威</a><a href='javascript:void(0)' title='斯里兰卡' target='_self' class='mNotice-normal'>斯里兰卡</a><a href='javascript:void(0)' title='吉隆坡' target='_self' class='mNotice-normal'>吉隆坡</a><a href='javascript:void(0)' title='吴哥窟' target='_self' class='mNotice-normal'>吴哥窟</a><a href='javascript:void(0)' title='岘港' target='_self' class='mNotice-normal'>岘港</a><a href='javascript:void(0)' title='芽庄' target='_self' class='mNotice-normal'>芽庄</a><a href='javascript:void(0)' title='美奈' target='_self' class='mNotice-normal'>美奈</a><a href='javascript:void(0)' title='越南' target='_self' class='mNotice-normal'>越南</a><a href='javascript:void(0)' title='柬埔寨' target='_self' class='mNotice-normal'>柬埔寨</a><a href='javascript:void(0)' title='暹粒' target='_self' class='mNotice-normal'>暹粒</a></div>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='欧洲' target='_self' class='mNotice-normal iv_notice_main_title'>欧洲</a><a href='javascript:void(0)' title='希腊' target='_self' class='mNotice-normal'>希腊</a><a href='javascript:void(0)' title='法国' target='_self' class='mNotice-normal'>法国</a><a href='javascript:void(0)' title='西班牙' target='_self' class='mNotice-normal'>西班牙</a><a href='javascript:void(0)' title='意大利' target='_self' class='mNotice-normal'>意大利</a><a href='javascript:void(0)' title='英国' target='_self' class='mNotice-normal'>英国</a><a href='javascript:void(0)' title='德国' target='_self' class='mNotice-normal'>德国</a><a href='javascript:void(0)' title='挪威' target='_self' class='mNotice-normal'>挪威</a><a href='javascript:void(0)' title='冰岛' target='_self' class='mNotice-normal'>冰岛</a><a href='javascript:void(0)' title='瑞士' target='_self' class='mNotice-normal'>瑞士</a><a href='javascript:void(0)' title='爱尔兰' target='_self' class='mNotice-normal'>爱尔兰</a><a href='javascript:void(0)' title='奥地利' target='_self' class='mNotice-normal'>奥地利</a><a href='javascript:void(0)' title='丹麦' target='_self' class='mNotice-normal'>丹麦</a><a href='javascript:void(0)' title='美洲' target='_self' class='mNotice-normal iv_notice_main_title'>美洲</a><a href='javascript:void(0)' title='美国西海岸' target='_self' class='mNotice-normal'>美国西海岸</a><a href='javascript:void(0)' title='美国东海岸' target='_self' class='mNotice-normal'>美国东海岸</a><a href='javascript:void(0)' title='美洲自驾' target='_self' class='mNotice-normal'>美洲自驾</a><a href='javascript:void(0)' title='夏威夷' target='_self' class='mNotice-normal'>夏威夷</a><a href='javascript:void(0)' title='澳洲' target='_self' class='mNotice-normal iv_notice_main_title'>澳洲</a><a href='javascript:void(0)' title='悉尼' target='_self' class='mNotice-normal'>悉尼</a><a href='javascript:void(0)' title='凯恩斯' target='_self' class='mNotice-normal'>凯恩斯</a><a href='javascript:void(0)' title='墨尔本' target='_self' class='mNotice-normal'>墨尔本</a><a href='javascript:void(0)' title='布里斯班' target='_self' class='mNotice-normal'>布里斯班</a></div>"
+        +"<div class='iv_notice_tab_con mNotice-mTab-content none'><a href='javascript:void(0)' title='普吉岛' target='_self' class='mNotice-normal'>普吉岛</a><a href='javascript:void(0)' title='巴厘岛' target='_self' class='mNotice-normal'>巴厘岛</a><a href='javascript:void(0)' title='塞班岛' target='_self' class='mNotice-normal'>塞班岛</a><a href='javascript:void(0)' title='毛里求斯' target='_self' class='mNotice-normal'>毛里求斯</a><a href='javascript:void(0)' title='马尔代夫' target='_self' class='mNotice-normal'>马尔代夫</a><a href='javascript:void(0)' title='关岛' target='_self' class='mNotice-normal'>关岛</a><a href='javascript:void(0)' title='塞舌尔' target='_self' class='mNotice-normal'>塞舌尔</a><a href='javascript:void(0)' title='沙巴' target='_self' class='mNotice-normal'>沙巴</a></div>"
+        +"</div></div>";
     return html;
 }

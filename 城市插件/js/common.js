@@ -124,5 +124,15 @@ var searchlist={
         [['gao,xiong','KAOHSIUNG'],'高雄'],[['fu,wang','FUKUOKA'],'福冈'],[['jin,bian','PHNOM PENH'],'金边'],[['yi,si,tan,bu,er','ISTANBUL'],'伊斯坦布尔'],[['wu,lan,ba,tuo','ULAANBAATAR'],'乌兰巴托'],[['meng,mai','MUMBAI'],'孟买'],[['ji,zhou','JEJU'],'济州']
     ],
     "threedata_ch":threedata_ch,
-    "threedata_en":threedata_en
+    "threedata_en":threedata_en,
+    "changxianyouMenu":['华东','华南','西南','华北','东北','华中','西北'],
+    "changxianyouMenuChild":[
+        [['xia,men','厦门'],['shang,hai','上海'],['hang,zhou','杭州'],['nan,jing','南京'],['he,fei','合肥']],
+        [['san,ya','三亚'],['gui,lin','桂林'],['shen,zhen','深圳'],['guang,zhou','广州']],
+        [['li,jiang','丽江'],['kun,ming','昆明'],['cheng,du','成都'],['chong,qing','重庆'],['la,sha','拉萨'],['gui,yang','贵阳']],
+        [['qing,dao','青岛'],['bei,jing','北京'],['ji,nan','济南'],['tai,yuan','太原'],['shi,jia,zhuang','石家庄']],
+        [['da,lian','大连'],['shen,yang','沈阳'],['change,chun','长春'],['ha,er,bin','哈尔滨']],
+        [['zhang,jia,jie','张家界'],['chang,sha','长沙'],['wu,han','武汉'],['zheng,zhou','郑州'],['nan,chang','南昌']],
+        [['xi,an','西安'],['lan,zhou','兰州'],['wu,lu,mu,qi','乌鲁木齐']]
+    ]
 };

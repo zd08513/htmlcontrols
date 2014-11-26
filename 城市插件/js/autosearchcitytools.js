@@ -22,60 +22,68 @@ function AutomaticSearch(id,config){
         if(value.length>0){
             var reg = /[^\u4e00-\u9fa5]/;//判断中文
             if(!reg.test(value)){
-                //获取国内数据
-                var itemsch=searchFilter(searchlist.ch,value,0);
-                $.each(itemsch,function(i,n){
-                    searchData.push(n);
-                });
-                //获取国外数据
-                var itemsen=searchFilter_EN(searchlist.en,value,0);
-                $.each(itemsen,function(i,n){
-                    searchData.push(n);
-                });
+                if(config.DataType!=2){//判断数据类型查询
+                    //获取国内数据
+                    var itemsch=searchFilter(searchlist.ch,value,0);
+                    $.each(itemsch,function(i,n){
+                        searchData.push(n);
+                    });
+                    //获取国外数据
+                    var itemsen=searchFilter_EN(searchlist.en,value,0);
+                    $.each(itemsen,function(i,n){
+                        searchData.push(n);
+                    });
+                }else{
+                    searchData=searchFilterCommon(searchlist.changxianyouMenuChild,value,0,1);
+                }
             }
             var reg2 = /^[a-zA-Z]+$/;//表示英文
             if(reg2.test(value)){
                 value=value.toLowerCase();
-                //获取国内数据
-                var itemsch=searchFilterCH(searchlist.ch,value,0);
-                $.each(itemsch,function(i,n){
-                    searchData.push(n);
-                });
-                //获取国外数据
-                var selectIem=searchFilter_ENW(searchlist.en,value,0);
-                $.each(selectIem,function(x,y){
-                    var valueitem=[];
-                    valueitem.push(y[0][1],y[1])
-                    searchData.push(valueitem);
-                });
-                //国内三字码查询
-                if(value.length<=3){
-                    var itemdata=searchlist.threedata_ch.split('@');
-                    for(var i=0;i<itemdata.length;i++){
-                        var a=itemdata[i];
-                        if(a.length>0){
-                            var b= a.split('|');
-                            var c=b[b.length-1].toLowerCase();
-                            if(GetFind(c,value,true)){
-                                var items=[];
-                                items.push(b[0],b[1]+"("+b[2]+")");
-                                searchData.push(items);
+                if(config.DataType!=2) {//判断数据类型查询
+                    //获取国内数据
+                    var itemsch=searchFilterCH(searchlist.ch,value,0);
+                    $.each(itemsch,function(i,n){
+                        searchData.push(n);
+                    });
+                    //获取国外数据
+                    var selectIem=searchFilter_ENW(searchlist.en,value,0);
+                    $.each(selectIem,function(x,y){
+                        var valueitem=[];
+                        valueitem.push(y[0][1],y[1])
+                        searchData.push(valueitem);
+                    });
+                    //国内三字码查询
+                    if(value.length<=3){
+                        var itemdata=searchlist.threedata_ch.split('@');
+                        for(var i=0;i<itemdata.length;i++){
+                            var a=itemdata[i];
+                            if(a.length>0){
+                                var b= a.split('|');
+                                var c=b[b.length-1].toLowerCase();
+                                if(GetFind(c,value)){
+                                    var items=[];
+                                    items.push(b[0],b[1]+"("+b[2]+")");
+                                    searchData.push(items);
+                                }
+                            }
+                        }
+                        var itemdata=searchlist.threedata_en.split('@');
+                        for(var i=0;i<itemdata.length;i++){
+                            var a=itemdata[i];
+                            if(a.length>0){
+                                var b= a.split('|');
+                                var c=b[b.length-1].toLowerCase();
+                                if(GetFind(c,value)){
+                                    var items=[];
+                                    items.push(b[0],b[1]);
+                                    searchData.push(items);
+                                }
                             }
                         }
                     }
-                    var itemdata=searchlist.threedata_en.split('@');
-                    for(var i=0;i<itemdata.length;i++){
-                        var a=itemdata[i];
-                        if(a.length>0){
-                            var b= a.split('|');
-                            var c=b[b.length-1].toLowerCase();
-                            if(GetFind(c,value,true)){
-                                var items=[];
-                                items.push(b[0],b[1]);
-                                searchData.push(items);
-                            }
-                        }
-                    }
+                }else{
+                    searchData=searchFilterCommon(searchlist.changxianyouMenuChild,value,0,2);
                 }
             }
 
@@ -329,9 +337,9 @@ function searchFilterCH(data,searchString,searchLength){
                 }
                 //if(valuestring.length==0 || vs.length==0)return;
                 //if(valuestring.filter(searchString)){
-                if(GetFind(valuestring,searchString,true)){
+                if(GetFind(valuestring,searchString)){
                     selectData.push(n);
-                }else if(GetFind(vs,searchString,true)){
+                }else if(GetFind(vs,searchString)){
                     selectData.push(n);
                 }
             });
@@ -358,18 +366,18 @@ function searchFilter_ENW(data,searchString,searchLength){
                 zhString += itemvalues[v];
                 zhJ += itemvalues[v].charAt(0);
             }
-            if (GetFind(zhString,searchString,true)) {
+            if (GetFind(zhString,searchString)) {
                 selectData.push(n);
-            } else if (GetFind(zhJ,searchString,true)) {
+            } else if (GetFind(zhJ,searchString)) {
                 selectData.push(n);
-            } else if (GetFind(ENString,searchString,true)) {
+            } else if (GetFind(ENString,searchString)) {
                 selectData.push(n);
             }else if(zhk.length>0){
                 var zhks=zhk.split(','),zhkk='';
                 for(var v=0;v<zhks.length;v++){
                     zhkk+=zhks[v];
                 }
-                if(GetFind(zhkk,searchLength,true)){
+                if(GetFind(zhkk,searchLength)){
                     selectData.push(n);
                 }
             }
@@ -378,9 +386,39 @@ function searchFilter_ENW(data,searchString,searchLength){
         return searchFilter_ENW(selectData,searchString,searchLength);
     }
 }
-function GetFind(value,search,bool_v){
+function GetFind(value,search){
     var bool_v=false;
     if(value.indexOf(search)>-1)
         bool_v=true;
     return bool_v;
+}
+//searchType:1表示按中文搜索，2表示按英文搜索
+function searchFilterCommon(data,searchString,searchLength,searchType){
+    var selectData=[];
+    $.each(data,function(i,n){
+        $.each(n,function(x,y){
+            var values=[];
+            if(searchType==1){
+                if(GetFind(y[1],searchString)){
+                    values.push(y[0],y[1]);
+                    selectData.push(values);
+                }
+            }else if(searchType==2){
+                var searchValues=y[0].split(',');
+                var searchValueFirst='',searchValueString='';
+                for(var k= 0,len=searchValues.length;k<len;k++){
+                    searchValueFirst+=searchValues[k].charAt(0);
+                    searchValueString+=searchValues[k];
+                }
+                if(GetFind(searchValueFirst,searchString)){
+                    values.push(y[0],y[1]);
+                    selectData.push(values);
+                }else if(GetFind(searchValueString,searchString)){
+                    values.push(y[0],y[1]);
+                    selectData.push(values);
+                }
+            }
+        });
+    });
+    return selectData;
 }
