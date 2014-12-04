@@ -59,7 +59,7 @@
 <script src="js/autosearchcitytools.js" type="text/javascript"></script>
 <script>
     //国内
-    //出发地
+    //出发地()
     CityWindowShow('chengsi1',{type:1,status:1});
     //到达地
     CityWindowShow('chengsi2',{type:1,status:1,automaticsearch:false});
@@ -70,12 +70,13 @@
     CityWindowShow('chengsi4',{type:2,status:2,automaticsearch:true});
     //搜索功能
     //第一个参数是：输入窗口的id,第二个参数（languageType 1:表示国内，2，表示国外,count 显示条数,显示所有用数据用：yes）
+    //languageType (searchlist.ch  searchlist.en  searchlist.changxianyouMenuChild  searchlist.threedata_ch  searchlist.threedata_en
     AutomaticSearch('chengsi1',{languageType:1,count:10,DataType:1});
     AutomaticSearch('chengsi2',{languageType:1,count:10,DataType:1});
     AutomaticSearch('chengsi3',{languageType:2,count:10,DataType:1});
     AutomaticSearch('chengsi4',{languageType:2,count:10,DataType:1});
 
-    //长线游
+    //长线游(menu_Data.datas  searchlist.changxianyouMenuChild
     CityWindowShow('chengsi5',{type:1,status:1});
     AutomaticSearch('chengsi5',{languageType:1,count:10,DataType:2});
     CityWindowShow('chengsi6',{type:3,status:1});
